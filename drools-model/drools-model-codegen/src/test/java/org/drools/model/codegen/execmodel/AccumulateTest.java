@@ -4122,6 +4122,9 @@ public class AccumulateTest extends BaseModelTest {
             ksession.insert(paul);
             ksession.insert(george);
 
+            assertThat(firedRules).isGreaterThan(0);
+            result.sort(Comparator.comparing(Person::getName));
+
             ksession.fireAllRules();
 
             assertThat(result).containsExactlyInAnyOrder(paul, george);
